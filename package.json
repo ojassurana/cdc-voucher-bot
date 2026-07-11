@@ -1,0 +1,26 @@
+{
+  "name": "cdc-voucher-wallet",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "deploy": "wrangler deploy",
+    "versions:upload": "wrangler versions upload"
+  },
+  "dependencies": {
+    "@cf-wasm/resvg": "0.3.4",
+    "@fontsource-variable/inter": "5.2.8",
+    "qrcode-generator": "2.0.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "5.20260710.1",
+    "@types/qrcode-generator": "1.0.6",
+    "typescript": "7.0.2",
+    "vitest": "4.1.10",
+    "wrangler": "4.110.0"
+  }
+}

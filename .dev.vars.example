@@ -1,0 +1,4 @@
+TELEGRAM_BOT_TOKEN="replace-me"
+TELEGRAM_SECRET_TOKEN="replace-me"
+WEBHOOK_SECRET="replace-me"
+MASTER_ENCRYPTION_KEY="base64-encoded-32-byte-key"
