@@ -1,12 +1,45 @@
 # CDC Voucher Bot
 
+<p align="center">
+  <img src="docs/branding/logo.png" alt="CDC Voucher Bot logo" width="160" height="160" />
+</p>
+
+<p align="center">
+  <strong>Track CDC voucher balances · one QR for the exact amount at checkout</strong>
+</p>
+
+<p align="center">
+  <a href="https://t.me/cdc_voucherbot"><img src="https://img.shields.io/badge/Telegram-@cdc__voucherbot-26A5E4?style=for-the-badge&logo=telegram&logoColor=white" alt="Open @cdc_voucherbot" /></a>
+  <a href="https://github.com/ojassurana/cdc-voucher-bot/stargazers"><img src="https://img.shields.io/github/stars/ojassurana/cdc-voucher-bot?style=for-the-badge" alt="GitHub stars" /></a>
+  <a href="https://github.com/ojassurana/cdc-voucher-bot/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" alt="MIT license" /></a>
+  <a href="https://deploy.workers.cloudflare.com/?url=https://github.com/ojassurana/cdc-voucher-bot"><img src="https://img.shields.io/badge/Cloudflare-Deploy-F38020?style=for-the-badge&logo=cloudflare&logoColor=white" alt="Deploy to Cloudflare" /></a>
+</p>
+
+<p align="center">
+  <a href="https://t.me/cdc_voucherbot"><strong>👉 Open the official bot: @cdc_voucherbot</strong></a>
+</p>
+
 A private Telegram QoL bot for **CDC / Heartland**, **Supermarket**, and **Energy** vouchers.
 
 Add a RedeemSG voucher link once → see live balances → generate a checkout QR for the amount you need.
 
+<p align="center">
+  <img src="docs/branding/description.jpg" alt="CDC Voucher Bot description art" width="640" />
+</p>
+
 > **Unofficial community tool.** Not affiliated with, endorsed by, or operated by any government agency. Use at your own risk. Voucher links are sensitive — treat them like cash.
 
 ![Dashboard preview](docs/dashboard-preview.png)
+
+---
+
+## Try it
+
+| | |
+| --- | --- |
+| **Official bot** | [**@cdc_voucherbot**](https://t.me/cdc_voucherbot) |
+| **Direct link** | [https://t.me/cdc_voucherbot](https://t.me/cdc_voucherbot) |
+| **Self-host** | Deploy your own Worker (below) |
 
 ---
 
@@ -96,6 +129,13 @@ curl -sS https://cdc-voucher-bot.<your-subdomain>.workers.dev/health
 
 That’s enough. No custom menu setup is required — `/start` registers the command menu for you.
 
+Branding assets from this repo (optional):
+
+| Asset | Path |
+| --- | --- |
+| Profile logo | [`docs/branding/logo.png`](docs/branding/logo.png) |
+| Description picture (640×360) | [`docs/branding/description.jpg`](docs/branding/description.jpg) |
+
 ---
 
 ## Secrets
@@ -167,7 +207,7 @@ You want `url` pointing at your Worker, `pending_update_count` low/zero, and no 
 
 ## Using the bot
 
-1. Open your bot in Telegram → send `/start`
+1. Open [**@cdc_voucherbot**](https://t.me/cdc_voucherbot) (or your self-hosted bot) → send `/start`
 2. Tap **Add voucher**
 3. Paste a RedeemSG link  
    (`https://voucher.redeem.gov.sg/...`)
@@ -221,6 +261,12 @@ npm test
 - TypeScript
 - QR rendering via `@cf-wasm/resvg` + Inter font
 - RedeemSG **public** group lookup only (no merchant redeem API)
+
+---
+
+## License
+
+MIT — see [`LICENSE`](LICENSE).
 
 ---
 
