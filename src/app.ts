@@ -474,17 +474,19 @@ async function askAmount(
   );
 }
 
-async function loadLiveSnapshots(env: Env, userKey: string): Promise<SourceSnapshot[]> {
+async function loadLiveSnapshots(env: Env, userKey: string): Promise<{ snapshots: SourceSnapshot[]; failed: number; total: number }> {
   const sources = await listSources(env.DB, userKey);
   const snapshots: SourceSnapshot[] = [];
+  let failed = 0;
   for (const source of sources) {
     try {
       snapshots.push(await refreshSource(env, userKey, source));
     } catch (error) {
+      failed += 1;
       console.error("qr_source_refresh_failed", { source_id: source.id, reason: error instanceof Error ? error.message : "unknown" });
     }
   }
-  return snapshots;
+  return { snapshots, failed, total: sources.length };
 }
 
 async function generateQr(
@@ -495,7 +497,18 @@ async function generateQr(
   category: Category,
   amount: number,
 ): Promise<void> {
-  const snapshots = await loadLiveSnapshots(env, userKey);
+  const { snapshots, failed, total } = await loadLiveSnapshots(env, userKey);
+  if (total > 0 && snapshots.length === 0) {
+    await showPanel(
+      env, telegram, chatId, userKey,
+      "I couldn’t reach RedeemSG to build a live QR right now. Tap <b>↻ Refresh balances</b> and try again in a moment.",
+      { inline_keyboard: [[await button(env, userKey, "↻ Refresh balances", "bal"), await button(env, userKey, "Dashboard", "h")]] },
+    );
+    return;
+  }
+  if (failed > 0 && snapshots.length > 0) {
+    console.error("qr_partial_source_refresh", { failed, ok: snapshots.length, total });
+  }
   const vouchers = snapshots.flatMap((snapshot) => snapshot.vouchers).filter((voucher) => voucher.category === category);
   const plan = selectPaymentPlan(vouchers, amount);
   if (!plan) {

@@ -53,6 +53,27 @@ describe("voucher discovery", () => {
     expect(extractGroupId("https://example.com/group_123")).toBe("");
   });
 
+  it("sends browser-like Origin/Referer when loading voucher groups", async () => {
+    const { fetchVoucherGroup } = await import("../src/redeem");
+    let seen: RequestInit | undefined;
+    const fetcher = async (_url: string, init?: RequestInit) => {
+      seen = init;
+      return new Response(
+        JSON.stringify({
+          campaign: { name: "CDC Vouchers 2026 (January)", extra_qr_prefix: "" },
+          data: { vouchers: [{ id: "h1", state: "unused", type: "heartland", voucher_value: 5 }] },
+        }),
+        { status: 200, headers: { "content-type": "application/json" } },
+      );
+    };
+    const group = await fetchVoucherGroup("group_abc", fetcher as typeof fetch);
+    expect(group.campaign?.name).toBe("CDC Vouchers 2026 (January)");
+    const headers = new Headers(seen?.headers as HeadersInit);
+    expect(headers.get("origin")).toBe("https://voucher.redeem.gov.sg");
+    expect(headers.get("referer")).toContain("https://voucher.redeem.gov.sg/group_abc");
+    expect(headers.get("accept")).toBe("application/json");
+  });
+
   it("splits one mixed tranche across CDC and supermarket balances", () => {
     const snapshot = snapshotVoucherGroup("source-a", "CDC January", "group-a", {
       campaign: { name: "CDC Vouchers 2026 (January)" },

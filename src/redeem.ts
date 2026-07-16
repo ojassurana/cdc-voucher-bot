@@ -1,6 +1,24 @@
 import type { Category, CategoryBalance, SourceSnapshot, Voucher } from "./types";
 
 export const REDEEM_API_BASE = "https://api-cdc.redeem.gov.sg/v1/public";
+export const REDEEM_SITE_ORIGIN = "https://voucher.redeem.gov.sg";
+
+// RedeemSG sits behind Cloudflare bot protection (Error 1010). Bare API
+// fetches without browser-like Origin/Referer are rejected, which made QR
+// creation and balance refresh look like "no unused balance".
+function redeemHeaders(groupId?: string, extra: Record<string, string> = {}): Record<string, string> {
+  const referer = groupId
+    ? `${REDEEM_SITE_ORIGIN}/${encodeURIComponent(groupId)}?lang=en-GB`
+    : `${REDEEM_SITE_ORIGIN}/`;
+  return {
+    accept: "application/json",
+    origin: REDEEM_SITE_ORIGIN,
+    referer,
+    "user-agent":
+      "Mozilla/5.0 (compatible; CDCVoucherBot/1.0; +https://t.me/cdc_voucherbot)",
+    ...extra,
+  };
+}
 
 interface RawVoucher {
   id?: unknown;
@@ -44,7 +62,7 @@ export function normalizeVoucherUrl(input: string, groupId: string): string {
 
 export async function fetchVoucherGroup(groupId: string, fetcher: typeof fetch = fetch): Promise<RawVoucherGroup> {
   const response = await fetcher(`${REDEEM_API_BASE}/vouchers/groups/${encodeURIComponent(groupId)}`, {
-    headers: { accept: "application/json" },
+    headers: redeemHeaders(groupId),
   });
   if (!response.ok) throw new Error(`RedeemSG returned HTTP ${response.status}`);
   return response.json<RawVoucherGroup>();
@@ -154,7 +172,7 @@ export async function createAliasPayload(
 ): Promise<string> {
   const response = await fetcher(`${REDEEM_API_BASE}/vouchers/groups/alias`, {
     method: "POST",
-    headers: { "content-type": "application/json" },
+    headers: redeemHeaders(snapshot.groupId, { "content-type": "application/json" }),
     body: JSON.stringify({ group_id: snapshot.groupId, voucher_ids: vouchers.map((voucher) => voucher.id) }),
   });
   if (!response.ok) throw new Error(`RedeemSG alias endpoint returned HTTP ${response.status}`);
