@@ -19,7 +19,7 @@
   <a href="https://t.me/cdc_voucherbot"><strong>👉 Open the official bot: @cdc_voucherbot</strong></a>
 </p>
 
-A private Telegram QoL bot for **CDC / Heartland**, **Supermarket**, and **Energy** vouchers.
+A private Telegram quality-of-life bot for **CDC / Heartland**, **Supermarket**, and **Energy** vouchers.
 
 Add a RedeemSG voucher link once → see live balances → generate a checkout QR for the amount you need.
 
@@ -29,7 +29,11 @@ Add a RedeemSG voucher link once → see live balances → generate a checkout Q
 
 > **Unofficial community tool.** Not affiliated with, endorsed by, or operated by any government agency. Use at your own risk. Voucher links are sensitive — treat them like cash.
 
-![Dashboard preview](docs/dashboard-preview.png)
+<p align="center">
+  <img src="docs/dashboard-preview.png" alt="Dashboard preview — balances and voucher list" width="360" />
+  &nbsp;
+  <img src="docs/qr-preview.png" alt="Checkout QR preview — exact-amount QR" width="360" />
+</p>
 
 ---
 
@@ -116,7 +120,7 @@ curl -sS https://cdc-voucher-bot.<your-subdomain>.workers.dev/health
 
 ---
 
-## Minimal BotFather setup
+## Create a Telegram bot
 
 1. Open Telegram → talk to [**@BotFather**](https://t.me/BotFather)
 2. Send `/newbot`
