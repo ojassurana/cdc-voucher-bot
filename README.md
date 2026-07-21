@@ -1,7 +1,7 @@
 # CDC Voucher Bot
 
-> **⚠️ Hosted bot taken down.** The public `@cdc_voucherbot` instance is offline.  
-> **Self-host this repo** instead (see [Deploy your own](#deploy-your-own)).
+> **Personal use only.** There is no hosted public bot.  
+> Deploy this repo **yourself** and use it only for you and your family (see [Deploy your own](#deploy-your-own)).
 
 <p align="center">
   <img src="docs/branding/logo.png" alt="CDC Voucher Bot logo" width="160" height="160" />
@@ -12,17 +12,12 @@
 </p>
 
 <p align="center">
-  <a href="https://t.me/cdc_voucherbot"><img src="https://img.shields.io/badge/Telegram-@cdc__voucherbot-26A5E4?style=for-the-badge&logo=telegram&logoColor=white" alt="Open @cdc_voucherbot" /></a>
   <a href="https://github.com/ojassurana/cdc-voucher-bot/stargazers"><img src="https://img.shields.io/github/stars/ojassurana/cdc-voucher-bot?style=for-the-badge" alt="GitHub stars" /></a>
   <a href="https://github.com/ojassurana/cdc-voucher-bot/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" alt="MIT license" /></a>
   <a href="https://deploy.workers.cloudflare.com/?url=https://github.com/ojassurana/cdc-voucher-bot"><img src="https://img.shields.io/badge/Cloudflare-Deploy-F38020?style=for-the-badge&logo=cloudflare&logoColor=white" alt="Deploy to Cloudflare" /></a>
 </p>
 
-<p align="center">
-  <a href="https://t.me/cdc_voucherbot"><strong>👉 Open the official bot: @cdc_voucherbot</strong></a>
-</p>
-
-A private Telegram quality-of-life bot for **CDC / Heartland**, **Supermarket**, and **Energy** vouchers.
+A private, self-hosted Telegram quality-of-life bot for **CDC / Heartland**, **Supermarket**, and **Energy** vouchers.
 
 Add a RedeemSG voucher link once → see live balances → generate a checkout QR for the amount you need.
 
@@ -37,16 +32,6 @@ Add a RedeemSG voucher link once → see live balances → generate a checkout Q
   &nbsp;
   <img src="docs/qr-preview.png" alt="Checkout QR preview — exact-amount QR" width="360" />
 </p>
-
----
-
-## Try it
-
-| | |
-| --- | --- |
-| **Official bot** | [**@cdc_voucherbot**](https://t.me/cdc_voucherbot) |
-| **Direct link** | [https://t.me/cdc_voucherbot](https://t.me/cdc_voucherbot) |
-| **Self-host** | Deploy your own Worker (below) |
 
 ---
 
