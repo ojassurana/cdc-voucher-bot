@@ -1,5 +1,8 @@
 # CDC Voucher Bot
 
+> **⚠️ Hosted bot taken down.** The public `@cdc_voucherbot` instance is offline.  
+> **Self-host this repo** instead (see [Deploy your own](#deploy-your-own)).
+
 <p align="center">
   <img src="docs/branding/logo.png" alt="CDC Voucher Bot logo" width="160" height="160" />
 </p>
