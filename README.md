@@ -199,7 +199,7 @@ You want `url` pointing at your Worker, `pending_update_count` low/zero, and no 
 
 ## Using the bot
 
-1. Open [**@cdc_voucherbot**](https://t.me/cdc_voucherbot) (or your self-hosted bot) → send `/start`
+1. Open **your self-hosted bot** → send `/start`
 2. Tap **Add voucher**
 3. Paste a RedeemSG link  
    (`https://voucher.redeem.gov.sg/...`)
